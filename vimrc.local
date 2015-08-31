@@ -1,0 +1,6 @@
+" You're welcome on my lawn
+nnoremap <Left> h
+nnoremap <Right> l
+nnoremap <Up> k
+nnoremap <Down> j
+

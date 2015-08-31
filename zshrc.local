@@ -1,0 +1,86 @@
+# git prompt stuff
+#
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr 'ST'
+zstyle ':vcs_info:*' unstagedstr 'US'
+zstyle ':vcs_info:*' formats '%c %u %a'
+
+git_untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && git status --porcelain | grep '??' &> /dev/null ; then
+    echo "UT"
+  fi
+}
+
+git_prompt_info() {
+  current_branch=$(git current-branch 2> /dev/null)
+  if [[ -n $current_branch ]]; then
+    echo " %{$fg_bold[green]%}($current_branch)%{$reset_color%}"
+  fi
+}
+
+precmd() {
+  vcs_info
+  if [[ ! -n ${vcs_info_msg_0_} ]]; then
+    export PS1="%m%{$fg_bold[blue]%} %~ %{$fg_no_bold[yellow]%}%!%{$reset_color%}: "
+  else
+export PS1="%m%{$fg_bold[blue]%} %3~$(git_prompt_info) %{$fg_bold[red]%}${vcs_info_msg_0_}$(git_untracked) %{$fg_no_bold[yellow]%}%!%{$reset_color%}: "
+  fi
+}
+
+# Kludge for ssh-agent so I can use multiple users
+#
+ssh_check_agent() {
+  # check I have an agent running
+  killall -0 -e ssh-agent 2>/dev/null
+  if [ $? -ne "0" ]; then
+    eval `ssh-agent`
+    echo $SSH_AUTH_SOCK
+    echo $SSH_AUTH_SOCK > ~/.ssh_auth_sock_loc
+  fi
+  # check IL0 key
+  if [ `ssh-add -l | grep -c id_rsa_il0` -lt 1 ]; then
+    echo "Adding id_rsa_il0 key..."
+    ssh-add ~/.ssh/id_rsa_il0
+  fi
+  ssh $*
+}
+alias ssh='ssh_check_agent'
+
+# Kludge for different name/email on Github vs GDS
+#
+git_wrapper() {
+  if [[ $PWD =~ .*ida-.* ]]; then
+    git config --global user.email "mark.hynes@digital.cabinet-office.gov.uk"
+    git config --global user.name "Mark Hynes"
+  else
+    git config --global user.email "mark.hynes@gmail.com"
+    git config --global user.name "Mark Hynes"
+  fi
+  git $*
+}
+alias git='git_wrapper'
+
+# Random aliases
+#
+alias history='history -iD'
+alias gvim='mvim'
+alias tar='gtar'
+alias python='/usr/local/bin/python'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset'"
+
+# Path-etic stuff
+#
+export PATH=/usr/local/autoconf/bin:$PATH
+
+# IDAP authentication stuff
+#
+export IDAP_BUILD_TOKEN=b6a25a3bda379b03813419398a834149
+export IDAP_BUILD_USER=markhynes
+
+# Source other random stuff
+#
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Go Version Manager
+[[ -s "~/.gvm/bin/gvm-init.sh" ]] && source "~/.gvm/bin/gvm-init.sh"
