@@ -24,3 +24,6 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	email = mark.hynes@gmail.com
+	name = Mark Hynes
