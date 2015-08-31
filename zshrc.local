@@ -62,6 +62,18 @@ git_wrapper() {
 }
 alias git='git_wrapper'
 
+# Setting FOG_CREDENTIAL is annoying
+#
+vcloud_login_wrapper() {
+  length=${#res}
+  export FOG_CREDENTIAL=$(echo ${res[14,${length}-7]})
+  vcloud-login
+}
+alias vcloud-login-dev='vcloud_login_wrapper'
+alias vcloud-login-prod='vcloud_login_wrapper'
+alias vcloud-login-dcs-prod='vcloud_login_wrapper'
+
+
 # Random aliases
 #
 alias history='history -iD'
