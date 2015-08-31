@@ -79,6 +79,10 @@ export PATH=/usr/local/autoconf/bin:$PATH
 export IDAP_BUILD_TOKEN=b6a25a3bda379b03813419398a834149
 export IDAP_BUILD_USER=markhynes
 
+# This needs to be set to run `rcup`, so I don't need to remember it
+#
+export RCRC=$HOME/dotfiles/rcrc
+
 # Source other random stuff
 #
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
