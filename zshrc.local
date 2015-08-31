@@ -81,6 +81,7 @@ alias gvim='mvim'
 alias tar='gtar'
 alias python='/usr/local/bin/python'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset'"
+alias gcal='gcalcli --calendar mark.hynes@digital.cabinet-office.gov.uk'
 
 # Path-etic stuff
 #
