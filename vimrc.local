@@ -4,3 +4,6 @@ nnoremap <Right> l
 nnoremap <Up> k
 nnoremap <Down> j
 
+" Make trailing whitespace really stand out
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
