@@ -1,0 +1,4 @@
+# Behave like screen
+set-option -g prefix C-a
+unbind-key C-b
+bind-key a send-prefix # C-a a sends literal 'C-a'
