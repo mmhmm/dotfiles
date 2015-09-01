@@ -1,0 +1,53 @@
+# Setting FOG_CREDENTIAL is annoying
+#
+vcloud_login_wrapper() {
+  length=${#res}
+  export FOG_CREDENTIAL=$(echo ${res[14,${length}-7]})
+  vcloud-login
+}
+alias vcloud-login-dev='vcloud_login_wrapper'
+alias vcloud-login-prod='vcloud_login_wrapper'
+alias vcloud-login-dcs-prod='vcloud_login_wrapper'
+
+# Kludge for different name/email on Github vs GDS
+#
+git_wrapper() {
+  if [[ $PWD =~ .*ida-.* ]]; then
+    git config --global user.email "mark.hynes@digital.cabinet-office.gov.uk"
+    git config --global user.name "Mark Hynes"
+  else
+    git config --global user.email "mark.hynes@gmail.com"
+    git config --global user.name "Mark Hynes"
+  fi
+  git $*
+}
+alias git='git_wrapper'
+
+# Kludge for ssh-agent so I can use multiple users
+#
+ssh_check_agent() {
+  # check I have an agent running
+  killall -0 -e ssh-agent 2>/dev/null
+  if [ $? -ne "0" ]; then
+    eval `ssh-agent`
+    echo $SSH_AUTH_SOCK
+    echo $SSH_AUTH_SOCK > ~/.ssh_auth_sock_loc
+  fi
+  # check IL0 key
+  if [ `ssh-add -l | grep -c id_rsa_il0` -lt 1 ]; then
+    echo "Adding id_rsa_il0 key..."
+    ssh-add ~/.ssh/id_rsa_il0
+  fi
+  ssh $*
+}
+#alias ssh='ssh_check_agent'
+
+# Random aliases
+#
+alias gcal='gcalcli --calendar mark.hynes@digital.cabinet-office.gov.uk'
+alias week='gcal calw'
+
+# IDAP authentication stuff
+#
+export IDAP_BUILD_TOKEN=b6a25a3bda379b03813419398a834149
+export IDAP_BUILD_USER=markhynes

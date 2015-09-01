@@ -8,3 +8,6 @@
   sslVerify = false
 [push]
   default = simple
+[user]
+  email = mark.hynes@gmail.com
+  name = Mark Hynes
