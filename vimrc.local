@@ -7,3 +7,31 @@ nnoremap <Down> j
 " Make trailing whitespace really stand out
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$/
+
+map § :NERDTreeToggle<CR>
+"map ± :NERDTreeClose<CR>
+map ± :set invnumber<CR>
+map ` :NERDTreeToggle<CR>
+map ~ :set invnumber<CR>
+let NERDTreeWinPos="left"
+let NERDTreeWinSize=20
+
+set pastetoggle=<F2>
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set ignorecase
+set smartcase
+set hlsearch
+set showmatch
+set diffopt=filler,iwhite
+
+cmap w!! w !sudo tee %
+imap jj <Esc>

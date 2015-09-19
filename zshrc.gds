@@ -46,6 +46,13 @@ ssh_check_agent() {
 #
 alias gcal='gcalcli --calendar mark.hynes@digital.cabinet-office.gov.uk'
 alias week='gcal calw'
+alias webops='cd ~/repos/ida-webops'
+alias boxes='cd ~/repos/ida-boxes'
+alias jenkins='cd ~/repos/ida-jenkins-job-builder'
+alias fabric='cd ~/repos/ida-fabric'
+alias blinken='cd ~/repos/blinken && lein run ~/repos/ida-webops/conf/blinken/config.yml'
+alias dr-update='cd ~/repos/ida-aviation-house-dr && git pull ; cd -'
+
 
 # IDAP authentication stuff
 #
