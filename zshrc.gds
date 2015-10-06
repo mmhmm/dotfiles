@@ -46,6 +46,7 @@ ssh_check_agent() {
 #
 alias gcal='gcalcli --calendar mark.hynes@digital.cabinet-office.gov.uk'
 alias week='gcal calw'
+alias agenda='gcal agenda'
 alias webops='cd ~/repos/ida-webops'
 alias boxes='cd ~/repos/ida-boxes'
 alias jenkins='cd ~/repos/ida-jenkins-job-builder'
