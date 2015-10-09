@@ -1,3 +1,5 @@
+export SHELL=/bin/zsh
+
 # git prompt stuff
 #
 autoload -Uz vcs_info
@@ -69,7 +71,8 @@ source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Go Version Manager
 [[ -s "~/.gvm/bin/gvm-init.sh" ]] && source "~/.gvm/bin/gvm-init.sh"
 
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+[[ -s /usr/local/etc/autojump.sh ]] && . /usr/local/etc/autojump.sh
+[[ -s /usr/share/autojump/autojump.zsh ]] && . /usr/share/autojump/autojump.zsh
 
 #[[ -e ~/.zshrc.git-completion ]] && source ~/.zshrc.git-completion
 
