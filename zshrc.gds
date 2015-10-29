@@ -59,3 +59,7 @@ alias dr-update='cd ~/repos/ida-aviation-house-dr && git pull ; cd -'
 #
 export IDAP_BUILD_TOKEN=b6a25a3bda379b03813419398a834149
 export IDAP_BUILD_USER=markhynes
+
+# Other
+#
+[[ -e ~/.setproxy.sh ]] && source ~/.setproxy.sh
