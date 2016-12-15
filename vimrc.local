@@ -39,3 +39,5 @@ set diffopt=filler,iwhite
 
 cmap w!! w !sudo tee %
 imap jj <Esc>
+
+set nowrap

@@ -27,3 +27,7 @@
 [user]
 	email = mark.hynes@gmail.com
 	name = Mark Hynes
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

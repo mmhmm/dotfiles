@@ -63,3 +63,6 @@ export IDAP_BUILD_USER=markhynes
 # Other
 #
 [[ -e ~/.setproxy.sh ]] && source ~/.setproxy.sh
+
+source ~/antigen.zsh
+antigen bundle StackExchange/blackbox
